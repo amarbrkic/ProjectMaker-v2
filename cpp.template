@@ -1,0 +1,19 @@
+assets:
+bin:
+headers:
+src:
+    main.cpp:
+        #include <iostream>
+        int main()
+        {
+            std::cout << "Hello World" << "\n";
+            return 0;
+        }
+README:
+    "# "+$nameOfProject$+"\n"
+build.bat:
+    "@echo off\n"
+    "MSBuild "+ $nameOfProject$ + ".vcxproj -property:Configuration=Debug -property:Platform=x64\n"
+    "bin\\" + $nameOfProject$ + ".exe"
+$nameOfProject$+".vcxproj" = "https://gist.githubusercontent.com/amarbrkic/b00b17fdf7f5ec7327dd35115a8fadd5/raw/0ec5ee0ce54768cc869d62dc9d8b8a6f70c4631a/template.vcxproj"
+22222222

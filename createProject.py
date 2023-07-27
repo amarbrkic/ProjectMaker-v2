@@ -3,7 +3,6 @@
 # TODO: Orient more toward template files rather than doing heavy lifting myself
 # TODO: or just a suggestion => more local files, or make local files option if there is no internet connection []
 # TODO: Parse it yourself... []
-# TODO: OPTIONAL -> Start managing VC via GIT []
 # TODO: OPTIONAL -> Add .gitignore []
 # TODO: Interaction (through print() after process is done) []
 # TODO: Creating process / Wizard(-thing) / (At first run only) []
@@ -25,26 +24,31 @@
 # TODO: Useful names ADVERB+NOUN (still programming related) [✔]
 # TODO: Timing [✔]
 # TODO: Check if there is (usable) internet connection [✔]
+# TODO: OPTIONAL -> Start managing VC via GIT [✔]
 
 # Python built-in modules
 import os
 import sys
 import time
+import random
 
 # Installed modules
 import colorama
 import click
 from prompt_toolkit import prompt
-
-# Project Modules
-from src.projectName import projectName
-from src.programmingLanguages.cpp import createCppProject
-from src.network import connect
-from src.argumentParsing import parse
-
+import urllib
 
 # Starting Timer
 start = time.perf_counter()
+
+
+def connect(host='http://google.com'):
+    try:
+        urllib.request.urlopen(host)
+        return True
+    except:
+        return False
+
 
 # test
 if not connect():
@@ -61,13 +65,14 @@ path = os.getcwd()
 if len(sys.argv) > 1 and sys.argv[1][:2] != "--":
     nameOfProject = sys.argv[1]
 else:
-    nameOfProject = projectName()
+    nameOfProject = "RandomName" + str(random.randint(100, 999))
 
 # creating root project dir
 rootProjectPath = os.path.join(path, nameOfProject)
 os.mkdir(rootProjectPath)
 
-if "--cpp" in sys.argv:
-    createCppProject(path, nameOfProject)
+# TODO: To be considered...
+# if "--cpp" in sys.argv:
+#    createCppProject(path, nameOfProject)
 
 print("Time = ", round(time.perf_counter()-start, 3), "s", sep="")
