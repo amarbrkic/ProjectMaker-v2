@@ -16,6 +16,7 @@
 # TODO: Different building systems (even C++, like for example we have MSBuild system, but could benefit from GNU Make, Ninja, and especially CMake) []
 # TODO: Still keep some sort of default settings, to speed up things for non-thinker []
 # TODO: Ease use of VCPKG (with CMake or else) []
+#   TODO: Add support for VCPKG (even install it for user) []
 
 #! DOING:
 # TODO: Parse code in segments (functions, after that possible OOP implementation) [1/5]
@@ -49,6 +50,8 @@ def connect(host='http://google.com'):
     except:
         return False
 
+def createProject(path, nameOfProject):
+    pass
 
 # test
 if not connect():
@@ -72,7 +75,7 @@ rootProjectPath = os.path.join(path, nameOfProject)
 os.mkdir(rootProjectPath)
 
 # TODO: To be considered...
-# if "--cpp" in sys.argv:
-#    createCppProject(path, nameOfProject)
+if "--cpp" in sys.argv:
+    createProject(path, nameOfProject)
 
 print("Time = ", round(time.perf_counter()-start, 3), "s", sep="")
